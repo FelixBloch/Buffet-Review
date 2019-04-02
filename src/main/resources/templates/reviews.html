@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Buffet Reviews</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+</head>
+
+<body>
+	<h1>Buffet Reviews</h1>
+	<div>
+		<h3 th:inline="text">Logged in as [[${#httpServletRequest.remoteUser}]]!</h3>
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out"/>
+		</form>
+		<table class="table table-striped">
+			<tr>
+				<th>Title</th>
+				<th>Author</th>
+				<th>Restaurant</th>
+				<th>City</th>
+				<th>Date</th>
+				<th>Rating</th>
+			</tr>
+			<tr th:each = "review : ${reviews}">
+				<td th:text="${review.title}"></td>
+				<td th:text="${review.user.username}"></td>
+				<td th:text="${review.restaurant.name}"></td>
+				<td th:text="${review.restaurant.city}"></td>
+				<td th:text="${review.reviewDate}"></td>
+				<td th:text="${review.rating}"></td>
+				<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${review.id})}" class="btn btn-danger">Delete</a></td>
+				<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edit/{id}(id=${review.id})}" class="btn btn-primary">Edit</a></td>
+			</tr>
+		</table>
+		<a href="/addreview" class="btn btn-success">Add a Review</a>
+	</div>
+</body>
+</html>
