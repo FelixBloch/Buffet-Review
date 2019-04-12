@@ -4,13 +4,12 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-
-import fi.haagahelia.buffetreview.domain.Review;
-
+@Entity
 public class Restaurant {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -59,7 +58,7 @@ public class Restaurant {
 		return reviews;
 	}
 
-	public void setReviews(List<Review> books) {
+	public void setReviews(List<Review> reviews) {
 		this.reviews = reviews;
 	}
 	

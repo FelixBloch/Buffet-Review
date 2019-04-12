@@ -18,6 +18,7 @@ public class ReviewController {
 	
 	@RequestMapping(value="/reviews", method=RequestMethod.GET)
 	public String reviews(Model model) {
+	model.addAttribute("review", new Review());
 	model.addAttribute("reviews", repository.findAll());
 	return "reviews";
 	}
@@ -25,7 +26,7 @@ public class ReviewController {
 	@RequestMapping(value = "/addreview")
 	public String addReview(Model model){
 		model.addAttribute("review", new Review());
-		//model.addAttribute("restaurants", repository.findAll());
+		model.addAttribute("restaurants", repository.findAll());
 		return "addreview";
 	}
 	
@@ -46,8 +47,13 @@ public class ReviewController {
 	@PreAuthorize("hasAuthority('ADMIN')")
 	public String editReview(@PathVariable("id") long id, Model model){
 	model.addAttribute("review", repository.findById(id));
-	//model.addAttribute("restaurants", repository.findAll());
+	model.addAttribute("restaurants", repository.findAll());
 	return "editreview";
 	}
+	
+	@RequestMapping(value="/login")
+    public String login() {
+    	return "login";
+    }
 
 }

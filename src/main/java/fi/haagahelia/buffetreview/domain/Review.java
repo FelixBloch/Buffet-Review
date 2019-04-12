@@ -1,7 +1,5 @@
 package fi.haagahelia.buffetreview.domain;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,10 +7,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
 
-import fi.haagahelia.buffetreview.domain.Restaurant;
-import fi.haagahelia.buffetreview.domain.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Review {
@@ -36,6 +34,7 @@ public class Review {
 	@ManyToOne
 	@JsonIgnore
 	@JoinColumn(name = "userId")
+	@CreatedBy
 	private User user;
 	
 	public User getUser() {
@@ -51,9 +50,10 @@ public class Review {
 	private int rating;
 	private String review;
 	private int price;
-	private Date reviewDate;
+	@CreatedDate
+	private String reviewDate;
 	
-	public Review(String title, Restaurant restaurant, User user, int rating, String review, int price, Date reviewDate) {
+	public Review(String title, Restaurant restaurant, User user, int rating, String review, int price, String reviewDate) {
 		this.title = title;
 		this.restaurant = restaurant;
 		this.user = user;
@@ -97,10 +97,10 @@ public class Review {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public Date getReviewDate() {
+	public String getReviewDate() {
 		return reviewDate;
 	}
-	public void setReviewDate(Date reviewDate) {
+	public void setReviewDate(String reviewDate) {
 		this.reviewDate = reviewDate;
 	}
 

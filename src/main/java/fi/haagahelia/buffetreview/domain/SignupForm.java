@@ -6,7 +6,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 public class SignupForm {
 	@NotEmpty
-    @Size(min=5, max=30)
+    @Size(min=2, max=30)
     private String username = "";
 	
 	@NotEmpty
@@ -14,11 +14,11 @@ public class SignupForm {
     private String email = "";
 
     @NotEmpty
-    @Size(min=7, max=30)
+    @Size(min=6, max=30)
     private String password = "";
 
     @NotEmpty
-    @Size(min=7, max=30)
+    @Size(min=6, max=30)
     private String passwordCheck = "";
 
     @NotEmpty
@@ -41,8 +41,8 @@ public class SignupForm {
     private String city = "";
     
     @NotEmpty
-    @Size(min=5, max=10)
-    private int postcode;
+    @Size(min=3, max=15)
+    private String postcode;
     
     @NotEmpty
     @Size(min=3, max=30)
@@ -124,11 +124,11 @@ public class SignupForm {
 		this.city = city;
 	}
 
-	public int getPostcode() {
+	public String getPostcode() {
 		return postcode;
 	}
 
-	public void setPostcode(int postcode) {
+	public void setPostcode(String postcode) {
 		this.postcode = postcode;
 	}
 
