@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Restaurant {
 	@Id
@@ -51,6 +53,7 @@ public class Restaurant {
 	}
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurant")
+	@JsonIgnore
 	private List<Review> reviews;
 
 

@@ -1,5 +1,6 @@
 package fi.haagahelia.buffetreview.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,7 +9,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -48,17 +48,16 @@ public class Review {
 	// Review data
 	private String title;
 	private int rating;
-	private String review;
+	private String reviewText;
 	private int price;
-	@CreatedDate
 	private String reviewDate;
 	
-	public Review(String title, Restaurant restaurant, User user, int rating, String review, int price, String reviewDate) {
+	public Review(String title, Restaurant restaurant, User user, int rating, String reviewText, int price, String reviewDate) {
 		this.title = title;
 		this.restaurant = restaurant;
 		this.user = user;
 		this.rating = rating;
-		this.review = review;
+		this.reviewText = reviewText;
 		this.price = price;
 		this.reviewDate = reviewDate;
 	}
@@ -85,11 +84,11 @@ public class Review {
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
-	public String getReview() {
-		return review;
+	public String getReviewText() {
+		return reviewText;
 	}
-	public void setReview(String review) {
-		this.review = review;
+	public void setReviewText(String reviewText) {
+		this.reviewText = reviewText;
 	}
 	public int getPrice() {
 		return price;
