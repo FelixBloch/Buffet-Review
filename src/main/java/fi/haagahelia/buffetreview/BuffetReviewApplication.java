@@ -34,7 +34,7 @@ public class BuffetReviewApplication {
 			//Date dateNow = new Date( );
 			repository.save(new Review("Lunch at the Wiesn", rrepository.findByName("Wiesn").get(0), urepository.findByUsername("admin"), 4, "I went here for lunch with my colleagues and we had great beer and bratwurst.", 3, "11/04/2019"));
 			repository.save(new Review("Nice dinner at Kung Fu", rrepository.findByName("Kung Fu Ravintola").get(0), urepository.findByUsername("admin"), 3, "The food was mediocre and the servers were rude. At least it was cheap.", 1, "10/03/2019"));
-			repository.save(new Review("My ass on fire", rrepository.findByName("Taj Mahal").get(0), urepository.findByUsername("admin"), 5, "Great indian food but I am not used to the spice so the next morning I wasn't able to sit anymore.", 4, "07/04/2019"));
+			repository.save(new Review("This food was on fire", rrepository.findByName("Taj Mahal").get(0), urepository.findByUsername("admin"), 5, "Great indian food but I am not used to the spice so the next morning I wasn't able to sit anymore.", 4, "07/04/2019"));
 			
 		};
 	}
