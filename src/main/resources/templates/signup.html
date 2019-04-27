@@ -35,7 +35,11 @@
 				<p th:if="${#fields.hasErrors('passwordCheck')}" th:errors="*{passwordCheck}">Password Match Error</p>	
 			</div>
 			<div>
-				<label> Role <input type="text" th:field="*{role}" class="form-control"/></label>
+				<label> Role </label> <br/>
+				<select id="rolelist" th:field="*{role}" class="custom-select" style="width:115px">
+					<option th:value="student" th:text="Student"></option>
+					<option th:value="teacher" th:text="Teacher"></option>
+				</select>
 				<p th:if="${#fields.hasErrors('role')}" th:errors="*{role}">Role Error</p>	
 			</div>
 			<div>

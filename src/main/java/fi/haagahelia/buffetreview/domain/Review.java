@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import org.springframework.data.annotation.CreatedBy;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -23,27 +24,11 @@ public class Review {
 	@JoinColumn(name = "restaurantId")
 	private Restaurant restaurant;
 	
-	public Restaurant getRestaurant() {
-		return restaurant;
-	}
-
-	public void setRestaurant(Restaurant restaurant) {
-		this.restaurant = restaurant;
-	}
-	
 	@ManyToOne
 	@JsonIgnore
 	@JoinColumn(name = "userId")
 	@CreatedBy
 	private User user;
-	
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
 	
 	// Review data
 	private String title;
@@ -51,11 +36,12 @@ public class Review {
 	private String reviewText;
 	private int price;
 	private String reviewDate;
+	private String username;
 	
-	public Review(String title, Restaurant restaurant, User user, int rating, String reviewText, int price, String reviewDate) {
+	public Review(String title, Restaurant restaurant, String username, int rating, String reviewText, int price, String reviewDate) {
 		this.title = title;
 		this.restaurant = restaurant;
-		this.user = user;
+		this.username = username;
 		this.rating = rating;
 		this.reviewText = reviewText;
 		this.price = price;
@@ -64,6 +50,14 @@ public class Review {
 	
 	public Review() {
 		
+	}
+	
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	
 	public long getId() {
@@ -101,6 +95,22 @@ public class Review {
 	}
 	public void setReviewDate(String reviewDate) {
 		this.reviewDate = reviewDate;
+	}
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	public Restaurant getRestaurant() {
+		return restaurant;
+	}
+
+	public void setRestaurant(Restaurant restaurant) {
+		this.restaurant = restaurant;
 	}
 
 }

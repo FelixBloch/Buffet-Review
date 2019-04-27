@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import fi.haagahelia.buffetreview.domain.Restaurant;
+import fi.haagahelia.buffetreview.domain.RestaurantRepository;
 import fi.haagahelia.buffetreview.domain.Review;
 import fi.haagahelia.buffetreview.domain.ReviewRepository;
 
@@ -15,6 +17,14 @@ import fi.haagahelia.buffetreview.domain.ReviewRepository;
 public class ReviewController {
 	@Autowired
 	private ReviewRepository repository;
+	
+	@Autowired
+	private RestaurantRepository rrepository;
+	
+	@RequestMapping(value="/login")
+    public String login() {
+    	return "login";
+    }
 	
 	@RequestMapping(value="/reviews", method=RequestMethod.GET)
 	public String reviews(Model model) {
@@ -26,8 +36,14 @@ public class ReviewController {
 	@RequestMapping(value = "/addreview")
 	public String addReview(Model model){
 		model.addAttribute("review", new Review());
-		model.addAttribute("restaurants", repository.findAll());
+		model.addAttribute("restaurants", rrepository.findAll());
 		return "addreview";
+	}
+	
+	@RequestMapping(value = "/addrestaurant")
+	public String addRestaurant(Model model) {
+		model.addAttribute("restaurant", new Restaurant());
+		return "addrestaurant";
 	}
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
@@ -47,13 +63,8 @@ public class ReviewController {
 	@PreAuthorize("hasAuthority('ADMIN')")
 	public String editReview(@PathVariable("id") long id, Model model){
 	model.addAttribute("review", repository.findById(id));
-	model.addAttribute("restaurants", repository.findAll());
+	model.addAttribute("restaurants", rrepository.findAll());
 	return "editreview";
 	}
-	
-	@RequestMapping(value="/login")
-    public String login() {
-    	return "login";
-    }
 
 }

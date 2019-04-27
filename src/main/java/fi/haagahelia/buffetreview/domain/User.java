@@ -46,6 +46,9 @@ public class User {
 	@Column(name = "country", nullable = false)
 	private String country;
 	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+	private List<Review> reviews;
+	
 	public User(String username, String email, String password, String role, String firstName,  String lastName, String address, String city, String postcode, String state, String country) {
 		this.username = username;
 		this.email = email;
@@ -63,9 +66,6 @@ public class User {
 	public User() {
 		
 	}
-	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-	private List<Review> reviews;
 
 
 	public List<Review> getReviews() {

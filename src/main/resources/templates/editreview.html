@@ -71,7 +71,9 @@
 		</div>
 		<div>
 			<label>Restaurant:</label>
-			<input type="text" name="restaurant" th:field="*{restaurant.name}" /> 
+			<select id="restlist" th:field="*{restaurant}" class="custom-select" style="width:115px">
+				<option th:each="restaurant: ${restaurants}" th:value="${restaurant.restaurantId}" th:text="${restaurant.restaurantName}"></option>
+			</select> 
 		</div>
 		<div>
 			<label>Title:</label>

@@ -19,7 +19,7 @@ public class Restaurant {
 	
 	// Restaurant Info
 	@Column(name = "name", nullable = false, unique = true)
-	private String name;
+	private String restaurantName;
 	@Column(name = "type", nullable = false)
 	private String type;
 	private String info;
@@ -30,14 +30,18 @@ public class Restaurant {
 	@Column(name = "city", nullable = false)
 	private String city;
 	@Column(name = "postcode", nullable = false)
-	private int postcode;
+	private String postcode;
 	@Column(name = "state", nullable = true)
 	private String state;
 	@Column(name = "country", nullable = false)
 	private String country;
 	
-	public Restaurant(String name, String type, String info, String address, String city, int postcode, String state, String country) {
-		this.name = name;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurant")
+	@JsonIgnore
+	private List<Review> reviews;
+	
+	public Restaurant(String name, String type, String info, String address, String city, String postcode, String state, String country) {
+		this.restaurantName = name;
 		this.type = type;
 		this.info = info;
 		this.address = address;
@@ -45,17 +49,11 @@ public class Restaurant {
 		this.postcode = postcode;
 		this.state = state;
 		this.country = country;
-		
 	}
 	
 	public Restaurant() {
 		
 	}
-	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurant")
-	@JsonIgnore
-	private List<Review> reviews;
-
 
 	public List<Review> getReviews() {
 		return reviews;
@@ -71,11 +69,11 @@ public class Restaurant {
 	public void setRestaurantId(long restaurantId) {
 		this.restaurantId = restaurantId;
 	}
-	public String getName() {
-		return name;
+	public String getRestaurantName() {
+		return restaurantName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setRestaurantName(String name) {
+		this.restaurantName = name;
 	}
 	public String getType() {
 		return type;
@@ -101,10 +99,10 @@ public class Restaurant {
 	public void setCity(String city) {
 		this.city = city;
 	}
-	public int getPostcode() {
+	public String getPostcode() {
 		return postcode;
 	}
-	public void setPostcode(int postcode) {
+	public void setPostcode(String postcode) {
 		this.postcode = postcode;
 	}
 	public String getState() {
