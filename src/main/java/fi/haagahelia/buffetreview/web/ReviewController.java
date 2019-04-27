@@ -33,6 +33,13 @@ public class ReviewController {
 	return "reviews";
 	}
 	
+	@RequestMapping(value="/restaurants", method=RequestMethod.GET)
+	public String restaurants(Model model) {
+	model.addAttribute("restaurant", new Restaurant());
+	model.addAttribute("restaurants", rrepository.findAll());
+	return "restaurants";
+	}
+	
 	@RequestMapping(value = "/addreview")
 	public String addReview(Model model){
 		model.addAttribute("review", new Review());
@@ -52,19 +59,33 @@ public class ReviewController {
 		return "redirect:reviews";
 	}
 	
-	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/deleteReview/{id}", method = RequestMethod.GET)
 	@PreAuthorize("hasAuthority('ADMIN')")
 	public String deleteReview(@PathVariable("id") long id, Model model) {
 	repository.deleteById(id);
 	return "redirect:../reviews";
 	}
 	
-	@RequestMapping(value = "/edit/{id}")
+	@RequestMapping(value = "/deleteRestaurant/{id}", method = RequestMethod.GET)
+	@PreAuthorize("hasAuthority('ADMIN')")
+	public String deleteRestaurant(@PathVariable("id") long id, Model model) {
+	rrepository.deleteById(id);
+	return "redirect:../restaurants";
+	}
+	
+	@RequestMapping(value = "/editReview/{id}")
 	@PreAuthorize("hasAuthority('ADMIN')")
 	public String editReview(@PathVariable("id") long id, Model model){
 	model.addAttribute("review", repository.findById(id));
 	model.addAttribute("restaurants", rrepository.findAll());
 	return "editreview";
+	}
+	
+	@RequestMapping(value = "/editRestaurant/{id}")
+	@PreAuthorize("hasAuthority('ADMIN')")
+	public String editRestaurant(@PathVariable("restaurantId") long id, Model model){
+	model.addAttribute("restaurant", rrepository.findById(id));
+	return "editrestaurant";
 	}
 
 }

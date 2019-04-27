@@ -1,19 +1,29 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-	<title>Buffet Reviews</title>
+	<title>Buffet Review</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
 </head>
 
 <body>
-
-	<h1>Buffet Reviews</h1>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	  <a class="navbar-brand" th:href="@{/reviews}">Buffet Reviews</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+	    <div class="navbar-nav">
+	      <a class="nav-item nav-link active" th:href="@{/reviews}">Reviews<span class="sr-only">(current)</span></a>
+	      <a class="nav-item nav-link" th:href="@{/restaurants}">Restaurants</a>
+	    </div>
+	  </div>
+	  <span class="navbar-text" th:inline="text">Logged in as [[${#httpServletRequest.remoteUser}]]!</span>
+	  <form th:action="@{/logout}" method="post">
+		<input type="submit" class="btn btn-sm btn-outline-secondary" value="Sign Out"/>
+	  </form>
+	</nav>
 	<div>
-		<h3 th:inline="text">Logged in as [[${#httpServletRequest.remoteUser}]]!</h3>
-		<form th:action="@{/logout}" method="post">
-			<input type="submit" value="Sign Out"/>
-		</form>
 		<table class="table table-striped">
 			<tr>
 				<th>Title</th>
@@ -34,8 +44,8 @@
 				<td th:text="${review.restaurant.city}"></td>
 				<td th:text="${review.reviewDate}"></td>
 				<td th:text="${review.username}"></td>
-				<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${review.id})}" class="btn btn-danger">Delete</a></td>
-				<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edit/{id}(id=${review.id})}" class="btn btn-primary">Edit</a></td>
+				<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/deleteReview/{id}(id=${review.id})}" class="btn btn-danger">Delete</a></td>
+				<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/editReview/{id}(id=${review.id})}" class="btn btn-primary">Edit</a></td>
 			</tr>
 		</table>
 		<a href="/addreview" class="btn btn-success">Add a Review</a>
