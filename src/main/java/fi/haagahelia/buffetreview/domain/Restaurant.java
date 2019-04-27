@@ -18,7 +18,7 @@ public class Restaurant {
 	private long restaurantId;
 	
 	// Restaurant Info
-	@Column(name = "name", nullable = false, unique = true)
+	@Column(name = "restaurantName", nullable = false, unique = true)
 	private String restaurantName;
 	@Column(name = "type", nullable = false)
 	private String type;
@@ -40,8 +40,8 @@ public class Restaurant {
 	@JsonIgnore
 	private List<Review> reviews;
 	
-	public Restaurant(String name, String type, String info, String address, String city, String postcode, String state, String country) {
-		this.restaurantName = name;
+	public Restaurant(String restaurantName, String type, String info, String address, String city, String postcode, String state, String country) {
+		this.restaurantName = restaurantName;
 		this.type = type;
 		this.info = info;
 		this.address = address;
@@ -72,8 +72,8 @@ public class Restaurant {
 	public String getRestaurantName() {
 		return restaurantName;
 	}
-	public void setRestaurantName(String name) {
-		this.restaurantName = name;
+	public void setRestaurantName(String restaurantName) {
+		this.restaurantName = restaurantName;
 	}
 	public String getType() {
 		return type;

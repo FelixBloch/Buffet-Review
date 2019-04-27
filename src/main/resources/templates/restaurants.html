@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+	<title>Buffet Reviews</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+</head>
+
+<body>
+	<h1>List of Restaurants</h1>
+	<div>
+		<h3 th:inline="text">Logged in as [[${#httpServletRequest.remoteUser}]]!</h3>
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out"/>
+		</form>
+		<table class="table table-striped">
+			<tr>
+				<th>Name</th>
+				<th>Type</th>
+				<th>Address</th>
+				<th>City</th>
+				<th>Post-Code</th>
+				<th>State</th>
+				<th>Country</th>
+				<th sec:authorize="hasAuthority('ADMIN')"></th>
+				<th sec:authorize="hasAuthority('ADMIN')"></th>
+			</tr>
+			<tr th:each = "restaurant : ${restaurants}">
+				<td th:text="${restaurant.restaurantName}"></td>
+				<td th:text="${restaurant.type}"></td>
+				<td th:text="${restaurant.address}"></td>
+				<td th:text="${restaurant.city}"></td>
+				<td th:text="${restaurant.postcode}"></td>
+				<td th:text="${restaurant.state}"></td>
+				<td th:text="${restaurant.country}"></td>
+				<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${restaurant.restaurantId})}" class="btn btn-danger">Delete</a></td>
+				<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edit/{id}(id=${restaurant.restaurantId})}" class="btn btn-primary">Edit</a></td>
+			</tr>
+		</table>
+		<a href="/addrestaurant" class="btn btn-success">Add a Restaurant</a>
+	</div>
+</body>
+</html>

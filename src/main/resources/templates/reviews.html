@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 	<title>Buffet Reviews</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -7,6 +7,7 @@
 </head>
 
 <body>
+
 	<h1>Buffet Reviews</h1>
 	<div>
 		<h3 th:inline="text">Logged in as [[${#httpServletRequest.remoteUser}]]!</h3>
@@ -22,8 +23,8 @@
 				<th>City</th>
 				<th>Date</th>
 				<th>Author</th>
-				<th></th>
-				<th></th>
+				<th sec:authorize="hasAuthority('ADMIN')"></th>
+				<th sec:authorize="hasAuthority('ADMIN')"></th>
 			</tr>
 			<tr th:each = "review : ${reviews}">
 				<td th:text="${review.title}"></td>

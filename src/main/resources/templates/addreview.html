@@ -53,7 +53,7 @@
 			<label>Author:</label>
 			<select id="restlist" th:field="*{username}" class="custom-select" style="width:115px">
 				<option th:value="${#httpServletRequest.remoteUser}" th:text="yourself"></option>
-				<option th:value="Anonymous" th:text="anonymously"></option>
+				<option th:value="ANONYMOUS" th:text="anonymously"></option>
 			</select>
 		</div>
 		<div>
