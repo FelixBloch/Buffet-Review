@@ -59,6 +59,12 @@ public class ReviewController {
 		return "redirect:reviews";
 	}
 	
+	@RequestMapping(value = "/saveRestaurant", method = RequestMethod.POST)
+	public String save(Restaurant restaurant){
+		rrepository.save(restaurant);
+		return "redirect:reviews";
+	}
+	
 	@RequestMapping(value = "/deleteReview/{id}", method = RequestMethod.GET)
 	@PreAuthorize("hasAuthority('ADMIN')")
 	public String deleteReview(@PathVariable("id") long id, Model model) {

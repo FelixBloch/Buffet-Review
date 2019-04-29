@@ -24,7 +24,7 @@
 	  </form>
 	</nav>
 	<h1>Add a restaurant</h1>
-	<form th:object="${restaurant}" th:action="@{../save}" action="#" method="post">
+	<form th:object="${restaurant}" th:action="@{../saveRestaurant}" action="#" method="post">
 		<input type="hidden" th:field="*{id}" class="form-control"/>
 		<div>
 			<label>Restaurant Name:</label>
