@@ -25,28 +25,32 @@
 	</nav>
 	<div>
 		<table class="table table-striped">
-			<tr>
-				<th>Name</th>
-				<th>Type</th>
-				<th>Address</th>
-				<th>City</th>
-				<th>Post-Code</th>
-				<th>State</th>
-				<th>Country</th>
-				<th sec:authorize="hasAuthority('ADMIN')"></th>
-				<th sec:authorize="hasAuthority('ADMIN')"></th>
-			</tr>
-			<tr th:each = "restaurant : ${restaurants}">
-				<td th:text="${restaurant.restaurantName}"></td>
-				<td th:text="${restaurant.type}"></td>
-				<td th:text="${restaurant.address}"></td>
-				<td th:text="${restaurant.city}"></td>
-				<td th:text="${restaurant.postcode}"></td>
-				<td th:text="${restaurant.state}"></td>
-				<td th:text="${restaurant.country}"></td>
-				<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/deleteRestaurant/{id}(id=${restaurant.restaurantId})}" class="btn btn-danger">Delete</a></td>
-				<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/editRestaurant/{id}(id=${restaurant.restaurantId})}" class="btn btn-primary">Edit</a></td>
-			</tr>
+			<thead class="thead-dark">
+				<tr>
+					<th>Name</th>
+					<th>Type</th>
+					<th>Address</th>
+					<th>City</th>
+					<th>Post-Code</th>
+					<th>State</th>
+					<th>Country</th>
+					<th sec:authorize="hasAuthority('ADMIN')"></th>
+					<th sec:authorize="hasAuthority('ADMIN')"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each = "restaurant : ${restaurants}">
+					<td th:text="${restaurant.restaurantName}"></td>
+					<td th:text="${restaurant.type}"></td>
+					<td th:text="${restaurant.address}"></td>
+					<td th:text="${restaurant.city}"></td>
+					<td th:text="${restaurant.postcode}"></td>
+					<td th:text="${restaurant.state}"></td>
+					<td th:text="${restaurant.country}"></td>
+					<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/editRestaurant/{id}(id=${restaurant.restaurantId})}" class="btn btn-warning">Edit</a></td>
+					<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/deleteRestaurant/{id}(id=${restaurant.restaurantId})}" class="btn btn-danger">Delete</a></td>
+				</tr>
+			</tbody>
 		</table>
 		<a href="/addrestaurant" class="btn btn-success">Add a Restaurant</a>
 	</div>

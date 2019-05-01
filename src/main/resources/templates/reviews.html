@@ -4,6 +4,14 @@
 	<title>Buffet Review</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- Provided by W3Schools -->
+	<style>
+	.checked {
+	  color: orange;
+	}
+	</style>
 </head>
 
 <body>
@@ -25,28 +33,94 @@
 	</nav>
 	<div>
 		<table class="table table-striped">
-			<tr>
-				<th>Title</th>
-				<th>Restaurant</th>
-				<th>Rating</th>
-				<th>Price</th>
-				<th>City</th>
-				<th>Date</th>
-				<th>Author</th>
-				<th sec:authorize="hasAuthority('ADMIN')"></th>
-				<th sec:authorize="hasAuthority('ADMIN')"></th>
-			</tr>
-			<tr th:each = "review : ${reviews}">
-				<td th:text="${review.title}"></td>
-				<td th:text="${review.restaurant.restaurantName}"></td>
-				<td th:text="${review.rating}"></td>
-				<td th:text="${review.price}"></td>
-				<td th:text="${review.restaurant.city}"></td>
-				<td th:text="${review.reviewDate}"></td>
-				<td th:text="${review.username}"></td>
-				<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/deleteReview/{id}(id=${review.id})}" class="btn btn-danger">Delete</a></td>
-				<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/editReview/{id}(id=${review.id})}" class="btn btn-primary">Edit</a></td>
-			</tr>
+			<thead class="thead-dark">
+				<tr>
+					<th>Title</th>
+					<th>Restaurant</th>
+					<th>Rating</th>
+					<th>Price</th>
+					<th>City</th>
+					<th>Date</th>
+					<th>Author</th>
+					<th></th>
+					<th sec:authorize="hasAuthority('ADMIN')"></th>
+					<th sec:authorize="hasAuthority('ADMIN')"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each = "review : ${reviews}">
+					<td th:text="${review.title}"></td>
+					<td th:text="${review.restaurant.restaurantName}"></td>
+					
+					<td th:if="${review.rating} == 5">
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+					</td>
+					<td th:if="${review.rating} == 4">
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star"></span>
+					</td>
+					<td th:if="${review.rating} == 3">
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span>
+					</td>
+					<td th:if="${review.rating} == 2">
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span>
+					</td>
+					<td th:if="${review.rating} == 1">
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span>
+					</td>
+					
+					<td th:if="${review.price} == 4">
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+					</td>
+					<td th:if="${review.price} == 3">
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star"></span>
+					</td>
+					<td th:if="${review.price} == 2">
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span>
+					</td>
+					<td th:if="${review.price} == 1">
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span>
+					</td>
+					
+					<td th:text="${review.restaurant.city}"></td>
+					<td th:text="${review.reviewDate}"></td>
+					<td th:text="${review.username}"></td>
+					<td><a th:href="@{/showReview/{id}(id=${review.id})}" class="btn btn-info">Show review</a></td>
+					<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/editReview/{id}(id=${review.id})}" class="btn btn-warning">Edit</a></td>
+					<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/deleteReview/{id}(id=${review.id})}" class="btn btn-danger">Delete</a></td>
+				</tr>
+			</tbody>
 		</table>
 		<a href="/addreview" class="btn btn-success">Add a Review</a>
 	</div>
