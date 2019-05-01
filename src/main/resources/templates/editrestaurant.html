@@ -23,9 +23,10 @@
 		<input type="submit" class="btn btn-sm btn-outline-secondary" value="Sign Out"/>
 	  </form>
 	</nav>
+	
 	<h1>Add a restaurant</h1>
 	<form th:object="${restaurant}" th:action="@{../saveRestaurant}" action="#" method="post">
-		<input type="hidden" th:field="*{id}" class="form-control"/>
+		<input type="hidden" th:field="*{restaurantId}" class="form-control"/>
 		<div>
 			<label>Restaurant Name:</label>
 			<input type="text" placeholder="Add the restaurants name" name="restaurantName" th:field="*{restaurantName}" /> 
@@ -63,7 +64,7 @@
     		<label for="filePicture">Add a picture</label>
     		<input type="file" class="form-control-file" id="exampleFormControlFile1" />
   		</div>
-  		<input type="submit" class="btn btn-success" value="Submit Review"></input>
+  		<input type="submit" class="btn btn-success" value="Submit Restaurant"></input>
 	</form>
 </body>
 </html>

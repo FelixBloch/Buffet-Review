@@ -41,11 +41,6 @@ public class UserController {
 		    	newUser.setRole(signupForm.getRole());
 		    	newUser.setFirstName(signupForm.getFirstName());
 		    	newUser.setLastName(signupForm.getLastName());
-		    	newUser.setAddress(signupForm.getAddress());
-		    	newUser.setCity(signupForm.getCity());
-		    	newUser.setPostcode(signupForm.getPostcode());
-		    	newUser.setState(signupForm.getState());
-		    	newUser.setCountry(signupForm.getCountry());
 		    	
 		    	if (repository.findByUsername(signupForm.getUsername()) == null) { // Check if user exists
 		    		if (repository.findByUsername(signupForm.getEmail()) == null) { // Check if email exists

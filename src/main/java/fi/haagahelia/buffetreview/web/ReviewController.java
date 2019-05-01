@@ -28,9 +28,9 @@ public class ReviewController {
 	
 	@RequestMapping(value="/reviews", method=RequestMethod.GET)
 	public String reviews(Model model) {
-	model.addAttribute("review", new Review());
-	model.addAttribute("reviews", repository.findAll());
-	return "reviews";
+		model.addAttribute("review", new Review());
+		model.addAttribute("reviews", repository.findAll());
+		return "reviews";
 	}
 	
 	@RequestMapping(value="/restaurants", method=RequestMethod.GET)
@@ -68,30 +68,31 @@ public class ReviewController {
 	@RequestMapping(value = "/deleteReview/{id}", method = RequestMethod.GET)
 	@PreAuthorize("hasAuthority('ADMIN')")
 	public String deleteReview(@PathVariable("id") long id, Model model) {
-	repository.deleteById(id);
-	return "redirect:../reviews";
+		repository.deleteById(id);
+		return "redirect:../reviews";
 	}
 	
 	@RequestMapping(value = "/deleteRestaurant/{id}", method = RequestMethod.GET)
 	@PreAuthorize("hasAuthority('ADMIN')")
 	public String deleteRestaurant(@PathVariable("id") long id, Model model) {
-	rrepository.deleteById(id);
-	return "redirect:../restaurants";
+		rrepository.deleteById(id);
+		return "redirect:../restaurants";
 	}
 	
 	@RequestMapping(value = "/editReview/{id}")
 	@PreAuthorize("hasAuthority('ADMIN')")
 	public String editReview(@PathVariable("id") long id, Model model){
-	model.addAttribute("review", repository.findById(id));
-	model.addAttribute("restaurants", rrepository.findAll());
-	return "editreview";
+		model.addAttribute("review", repository.findById(id));
+		model.addAttribute("restaurants", rrepository.findAll());
+		return "editreview";
 	}
 	
 	@RequestMapping(value = "/editRestaurant/{id}")
 	@PreAuthorize("hasAuthority('ADMIN')")
 	public String editRestaurant(@PathVariable("restaurantId") long id, Model model){
-	model.addAttribute("restaurant", rrepository.findById(id));
-	return "editrestaurant";
+		model.addAttribute("restaurant", rrepository.findById(id));
+		return "editrestaurant";
 	}
+	
 
 }

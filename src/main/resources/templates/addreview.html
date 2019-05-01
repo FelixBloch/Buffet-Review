@@ -91,6 +91,7 @@
 			    <input type="radio" id="price4" name="rating" value="4" th:field="*{price}" /><label class = "full" for="price4"></label>
 			</fieldset>
 		</div>
+		
 		<div>
 			<label>Restaurant:</label>
 			<select id="restlist" th:field="*{restaurant}" class="custom-select" style="width:115px">
@@ -109,10 +110,6 @@
 		<div class="form-group">
     		<label for="reviewText">Review</label>
     		<textarea class="form-control" placeholder="Write your review..." id="reviewText" rows="3" th:field="*{reviewText}" ></textarea>
-  		</div>
-  		<div class="form-group">
-    		<label for="filePicture">Add a picture</label>
-    		<input type="file" class="form-control-file" id="exampleFormControlFile1" />
   		</div>
   		<input type="submit" class="btn btn-success" value="Submit Review"></input>
 	</form>

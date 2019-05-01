@@ -42,26 +42,6 @@
 				</select>
 				<p th:if="${#fields.hasErrors('role')}" th:errors="*{role}">Role Error</p>	
 			</div>
-			<div>
-				<label> Address :<input type="text" th:field="*{address}" class="form-control"/></label>
-				<p th:if="${#fields.hasErrors('address')}" th:errors="*{address}">Address Error</p>	
-			</div>
-			<div>
-				<label> City :<input type="text" th:field="*{city}" class="form-control"/></label>
-				<p th:if="${#fields.hasErrors('city')}" th:errors="*{city}">City Error</p>	
-			</div>
-			<div>
-				<label> Postcode :<input type="text" th:field="*{postcode}" class="form-control"/></label>
-				<p th:if="${#fields.hasErrors('postcode')}" th:errors="*{postcode}">Postcode Error</p>	
-			</div>
-			<div>
-				<label> State :<input type="text" th:field="*{state}" class="form-control"/></label>
-				<p th:if="${#fields.hasErrors('state')}" th:errors="*{state}">State Error</p>	
-			</div>
-			<div>
-				<label> Country :<input type="text" th:field="*{country}" class="form-control"/></label>
-				<p th:if="${#fields.hasErrors('country')}" th:errors="*{country}">Country Error</p>	
-			</div>
 			
 			<input type="submit" class="btn btn-success" value="Signup"></input>		
 		</form>
