@@ -4,12 +4,14 @@
 	<title>Sign Up</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+	
+	<script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 
 <body>
 	<h1>Sign up</h1>
 	<div class="col-md-4">
-		<form th:object="${signupform}" th:action="@{/saveuser}" action="#" method="post">
+		<form th:object="${signupform}" th:action="@{/saveuser}" class="form-horizontal" action="#" method="post">
 			<div>
 				<label> First Name :<input type="text" th:field="*{firstName}" class="form-control"/></label>
 				<p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First Name Error</p>	
@@ -42,6 +44,8 @@
 				</select>
 				<p th:if="${#fields.hasErrors('role')}" th:errors="*{role}">Role Error</p>	
 			</div>
+			
+			<div class="g-recaptcha" data-sitekey="6LeZQ6EUAAAAAHVZ2hgkX7_7GRKrU-8x2lZMqt6Z"></div>
 			
 			<input type="submit" class="btn btn-success" value="Signup"></input>		
 		</form>

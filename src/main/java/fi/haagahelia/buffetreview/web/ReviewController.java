@@ -40,9 +40,10 @@ public class ReviewController {
 	return "restaurants";
 	}
 	
-	@RequestMapping(value = "/showReview/{id}", method=RequestMethod.GET)
+	@RequestMapping(value = "/showreview/{id}", method=RequestMethod.GET)
 	public String showReview(@PathVariable("id") long id, Model model){
-		model.addAttribute("reviews", repository.findAll());
+		model.addAttribute("review", repository.findById(id).get());
+		model.addAttribute("restaurants", rrepository.findAll());
 		return "showreview";
 	}
 	

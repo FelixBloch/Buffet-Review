@@ -32,7 +32,7 @@
 	  </form>
 	</nav>
 	<div>
-		<table class="table table-striped">
+		<table class="table table-striped table-hover">
 			<thead class="thead-dark">
 				<tr>
 					<th>Title</th>
@@ -116,7 +116,7 @@
 					<td th:text="${review.restaurant.city}"></td>
 					<td th:text="${review.reviewDate}"></td>
 					<td th:text="${review.username}"></td>
-					<td><a th:href="@{/showReview/{id}(id=${review.id})}" class="btn btn-info">Show review</a></td>
+					<td><a th:href="@{/showreview/{id}(id=${review.id})}" class="btn btn-info">Show review</a></td>
 					<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/editReview/{id}(id=${review.id})}" class="btn btn-warning">Edit</a></td>
 					<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/deleteReview/{id}(id=${review.id})}" class="btn btn-danger">Delete</a></td>
 				</tr>

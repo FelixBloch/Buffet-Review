@@ -27,14 +27,14 @@ public class BuffetReviewApplication {
 			urepository.save(user1);
 			urepository.save(admin1);
 			
-			rrepository.save(new Restaurant("Kung Fu Ravintola", "Asian, Fusion", "This is a nice Asian restaurant in Pasila", "Ruokatie 1", "Helsinki", "00520", "", "Finland"));
-			rrepository.save(new Restaurant("Taj Mahal", "Indian", "This is a nice Indian restaurant in Pasila", "Ruokatie 2", "Helsinki", "00520", "Uusimaa", "Finland"));
-			rrepository.save(new Restaurant("Wiesn", "German, Bavarian", "This is a Bavarian style outdoor restaurant located in Pasila", "Ruokatie 3", "Helsinki", "00520", "Uusimaa", "Finland"));
+			rrepository.save(new Restaurant("Luckiefun's Restaurant", "asian, sushi, fusion", "This is a nice Asian buffet in the city centre.", "Fredrikinkatu 49", "Helsinki", "00101", "", "Finland"));
+			rrepository.save(new Restaurant("Fuku Helsinki", "asian, sushi", "This is a nice sushi buffet in the city centre", "Mannerheimintie 18", "Helsinki", "00100", "Uusimaa", "Finland"));
+			rrepository.save(new Restaurant("Food House", "asian, sushi, fusion, nepalese", "This is a asian lunch buffet located in Pasila", "Esterinportti 2", "Helsinki", "00240", "Uusimaa", "Finland"));
 			
 			//Date dateNow = new Date( );
-			repository.save(new Review("Lunch at the Wiesn", rrepository.findByRestaurantName("Wiesn").get(0), urepository.findByUsername("admin").getUsername(), 4, "I went here for lunch with my colleagues and we had great beer and bratwurst.", 3, "2019-04-11"));
-			repository.save(new Review("Nice dinner at Kung Fu", rrepository.findByRestaurantName("Kung Fu Ravintola").get(0), urepository.findByUsername("admin").getUsername(), 3, "The food was mediocre and the servers were rude. At least it was cheap.", 1, "2019-03-10"));
-			repository.save(new Review("This food was on fire", rrepository.findByRestaurantName("Taj Mahal").get(0), urepository.findByUsername("admin").getUsername(), 5, "Great indian food but I am not used to the spice so the next morning I wasn't able to sit anymore.", 4, "2019-04-07"));
+			repository.save(new Review("Lunch at Luckiefun's", rrepository.findByRestaurantName("Luckiefun's Restaurant").get(0), urepository.findByUsername("admin").getUsername(), 4, "I went here for lunch with my colleagues and we had great sushi!", 2, "2019-04-11"));
+			repository.save(new Review("Nice dinner at Fuku", rrepository.findByRestaurantName("Fuku Helsinki").get(0), "Tim Tester", 4, "The food was great and the servers excellent. The price was a bit high.", 4, "2019-03-10"));
+			repository.save(new Review("This food was okay", rrepository.findByRestaurantName("Food House").get(0), "Jane Jameson", 3, "Nice lunch if you are in a hurry or on a budget. Nothing extraordinary but at least the staff was nice.", 1, "2019-04-07"));
 			
 		};
 	}
