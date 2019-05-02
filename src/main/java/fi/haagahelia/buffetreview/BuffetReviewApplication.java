@@ -31,7 +31,6 @@ public class BuffetReviewApplication {
 			rrepository.save(new Restaurant("Fuku Helsinki", "asian, sushi", "This is a nice sushi buffet in the city centre", "Mannerheimintie 18", "Helsinki", "00100", "Uusimaa", "Finland"));
 			rrepository.save(new Restaurant("Food House", "asian, sushi, fusion, nepalese", "This is a asian lunch buffet located in Pasila", "Esterinportti 2", "Helsinki", "00240", "Uusimaa", "Finland"));
 			
-			//Date dateNow = new Date( );
 			repository.save(new Review("Lunch at Luckiefun's", rrepository.findByRestaurantName("Luckiefun's Restaurant").get(0), urepository.findByUsername("admin").getUsername(), 4, "I went here for lunch with my colleagues and we had great sushi!", 2, "2019-04-11"));
 			repository.save(new Review("Nice dinner at Fuku", rrepository.findByRestaurantName("Fuku Helsinki").get(0), "Tim Tester", 4, "The food was great and the servers excellent. The price was a bit high.", 4, "2019-03-10"));
 			repository.save(new Review("This food was okay", rrepository.findByRestaurantName("Food House").get(0), "Jane Jameson", 3, "Nice lunch if you are in a hurry or on a budget. Nothing extraordinary but at least the staff was nice.", 1, "2019-04-07"));
