@@ -55,7 +55,7 @@ public class UserController {
 
 						String ip = request.getRemoteAddr();
 
-						/*String captchaVerifyMessage = ReCaptchaService.verifyRecaptcha(ip, reCaptchaResponse);
+						String captchaVerifyMessage = ReCaptchaService.verifyRecaptcha(ip, reCaptchaResponse);
 
 						if (StringUtils.isEmpty(captchaVerifyMessage)) {
 							Map<String, Object> response = new HashMap<>();
@@ -63,7 +63,7 @@ public class UserController {
 
 							bindingResult.rejectValue("captcha", "err.captcha", "reCAPTCHA failed.");
 							return "signup";
-						}*/
+						}
 
 						repository.save(newUser);
 
