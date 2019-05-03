@@ -11,19 +11,20 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Restaurant {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long restaurantId;
-	
+
 	// Restaurant Info
 	@Column(name = "restaurantName", nullable = false, unique = true)
 	private String restaurantName;
 	@Column(name = "type", nullable = false)
 	private String type;
 	private String info;
-	
+
 	// Restaurant Address
 	@Column(name = "address", nullable = false)
 	private String address;
@@ -35,12 +36,13 @@ public class Restaurant {
 	private String state;
 	@Column(name = "country", nullable = false)
 	private String country;
-	
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurant")
 	@JsonIgnore
 	private List<Review> reviews;
-	
-	public Restaurant(String restaurantName, String type, String info, String address, String city, String postcode, String state, String country) {
+
+	public Restaurant(String restaurantName, String type, String info, String address, String city, String postcode,
+			String state, String country) {
 		this.restaurantName = restaurantName;
 		this.type = type;
 		this.info = info;
@@ -50,9 +52,9 @@ public class Restaurant {
 		this.state = state;
 		this.country = country;
 	}
-	
+
 	public Restaurant() {
-		
+
 	}
 
 	public List<Review> getReviews() {
@@ -62,58 +64,75 @@ public class Restaurant {
 	public void setReviews(List<Review> reviews) {
 		this.reviews = reviews;
 	}
-	
+
 	public long getRestaurantId() {
 		return restaurantId;
 	}
+
 	public void setRestaurantId(long restaurantId) {
 		this.restaurantId = restaurantId;
 	}
+
 	public String getRestaurantName() {
 		return restaurantName;
 	}
+
 	public void setRestaurantName(String restaurantName) {
 		this.restaurantName = restaurantName;
 	}
+
 	public String getType() {
 		return type;
 	}
+
 	public void setType(String type) {
 		this.type = type;
 	}
+
 	public String getInfo() {
 		return info;
 	}
+
 	public void setInfo(String info) {
 		this.info = info;
 	}
+
 	public String getAddress() {
 		return address;
 	}
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
 	public String getCity() {
 		return city;
 	}
+
 	public void setCity(String city) {
 		this.city = city;
 	}
+
 	public String getPostcode() {
 		return postcode;
 	}
+
 	public void setPostcode(String postcode) {
 		this.postcode = postcode;
 	}
+
 	public String getState() {
 		return state;
 	}
+
 	public void setState(String state) {
 		this.state = state;
 	}
+
 	public String getCountry() {
 		return country;
 	}
+
 	public void setCountry(String country) {
 		this.country = country;
 	}

@@ -1,27 +1,35 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-	<title>Buffet Review</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+<title>Buffet Review</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
 </head>
 
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-	  <a class="navbar-brand" th:href="@{/reviews}">Buffet Reviews</a>
-	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-	    <span class="navbar-toggler-icon"></span>
-	  </button>
-	  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-	    <div class="navbar-nav">
-	      <a class="nav-item nav-link" th:href="@{/reviews}">Reviews</a>
-	      <a class="nav-item nav-link active" th:href="@{/restaurants}">Restaurants<span class="sr-only">(current)</span></a>
-	    </div>
-	  </div>
-	  <span class="navbar-text" th:inline="text">Logged in as [[${#httpServletRequest.remoteUser}]]!</span>
-	  <form th:action="@{/logout}" method="post">
-		<input type="submit" class="btn btn-sm btn-outline-secondary" value="Sign Out"/>
-	  </form>
+		<a class="navbar-brand" th:href="@{/reviews}">Buffet Reviews</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			<div class="navbar-nav">
+				<a class="nav-item nav-link" th:href="@{/reviews}">Reviews</a> <a
+					class="nav-item nav-link active" th:href="@{/restaurants}">Restaurants<span
+					class="sr-only">(current)</span></a>
+			</div>
+		</div>
+		<span class="navbar-text" th:inline="text">Logged in as
+			[[${#httpServletRequest.remoteUser}]]!</span>
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" class="btn btn-sm btn-outline-secondary"
+				value="Sign Out" />
+		</form>
 	</nav>
 	<div>
 		<table class="table table-striped table-hover">
@@ -39,7 +47,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each = "restaurant : ${restaurants}">
+				<tr th:each="restaurant : ${restaurants}">
 					<td th:text="${restaurant.restaurantName}"></td>
 					<td th:text="${restaurant.type}"></td>
 					<td th:text="${restaurant.address}"></td>
@@ -47,8 +55,12 @@
 					<td th:text="${restaurant.postcode}"></td>
 					<td th:text="${restaurant.state}"></td>
 					<td th:text="${restaurant.country}"></td>
-					<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/editRestaurant/{id}(id=${restaurant.restaurantId})}" class="btn btn-warning">Edit</a></td>
-					<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/deleteRestaurant/{id}(id=${restaurant.restaurantId})}" class="btn btn-danger">Delete</a></td>
+					<td sec:authorize="hasAuthority('ADMIN')"><a
+						th:href="@{/editRestaurant/{id}(id=${restaurant.restaurantId})}"
+						class="btn btn-warning">Edit</a></td>
+					<td sec:authorize="hasAuthority('ADMIN')"><a
+						th:href="@{/deleteRestaurant/{id}(id=${restaurant.restaurantId})}"
+						class="btn btn-danger">Delete</a></td>
 				</tr>
 			</tbody>
 		</table>

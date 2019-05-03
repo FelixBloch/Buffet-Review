@@ -6,31 +6,31 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 public class SignupForm {
 	@NotEmpty
-    @Size(min=2, max=30)
-    private String username = "";
-	
+	@Size(min = 2, max = 30)
+	private String username = "";
+
 	@NotEmpty
-    @Size(min=5, max=50)
-    private String email = "";
+	@Size(min = 5, max = 50)
+	private String email = "";
 
-    @NotEmpty
-    @Size(min=6, max=30)
-    private String password = "";
+	@NotEmpty
+	@Size(min = 6, max = 30)
+	private String password = "";
 
-    @NotEmpty
-    @Size(min=6, max=30)
-    private String passwordCheck = "";
+	@NotEmpty
+	@Size(min = 6, max = 30)
+	private String passwordCheck = "";
 
-    @NotEmpty
-    private String role = "";
-    
-    @NotEmpty
-    @Size(min=2, max=50)
-    private String firstName = "";
-    
-    @NotEmpty
-    @Size(min=2, max=50)
-    private String lastName = "";
+	@NotEmpty
+	private String role = "";
+
+	@NotEmpty
+	@Size(min = 2, max = 50)
+	private String firstName = "";
+
+	@NotEmpty
+	@Size(min = 2, max = 50)
+	private String lastName = "";
 
 	public String getUsername() {
 		return username;
@@ -87,5 +87,5 @@ public class SignupForm {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-    
+
 }

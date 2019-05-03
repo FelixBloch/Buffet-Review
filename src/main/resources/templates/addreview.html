@@ -1,13 +1,16 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title></title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
-	<!-- Font Awesome by Dave Gandy - http://fontawesome.io -->
-	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"> 
-	<style>
-		/* Pure CSS Star Rating Widget by James Barnett - http://jamesbarnett.me */
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+<!-- Font Awesome by Dave Gandy - http://fontawesome.io -->
+<link rel="stylesheet"
+	href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
+<style>
+/* Pure CSS Star Rating Widget by James Barnett - http://jamesbarnett.me */
 		fieldset, label { margin: 0; padding: 0; }
 		body{ margin: 20px; }
 		h1 { font-size: 1.5em; margin: 10px; }
@@ -43,76 +46,100 @@
 		.rating > input:checked ~ label:hover,
 		.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
 		.rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
-	</style>
+</style>
 </head>
 
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-	  <a class="navbar-brand" th:href="@{/reviews}">Buffet Reviews</a>
-	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-	    <span class="navbar-toggler-icon"></span>
-	  </button>
-	  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-	    <div class="navbar-nav">
-	      <a class="nav-item nav-link active" th:href="@{/reviews}">Reviews<span class="sr-only">(current)</span></a>
-	      <a class="nav-item nav-link" th:href="@{/restaurants}">Restaurants</a>
-	    </div>
-	  </div>
-	  <span class="navbar-text" th:inline="text">Logged in as [[${#httpServletRequest.remoteUser}]]!</span>
-	  <form th:action="@{/logout}" method="post">
-		<input type="submit" class="btn btn-sm btn-outline-secondary" value="Sign Out"/>
-	  </form>
+		<a class="navbar-brand" th:href="@{/reviews}">Buffet Reviews</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			<div class="navbar-nav">
+				<a class="nav-item nav-link active" th:href="@{/reviews}">Reviews<span
+					class="sr-only">(current)</span></a> <a class="nav-item nav-link"
+					th:href="@{/restaurants}">Restaurants</a>
+			</div>
+		</div>
+		<span class="navbar-text" th:inline="text">Logged in as
+			[[${#httpServletRequest.remoteUser}]]!</span>
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" class="btn btn-sm btn-outline-secondary"
+				value="Sign Out" />
+		</form>
 	</nav>
-	
+
 	<h1>Write a review</h1>
-	<form th:object="${review}" th:action="@{save}" action="#" method="post">
+	<form th:object="${review}" th:action="@{save}" action="#"
+		method="post">
 		<div>
-			<label>Author:</label>
-			<select id="restlist" th:field="*{username}" class="custom-select" style="width:115px">
-				<option th:value="${#httpServletRequest.remoteUser}" th:text="yourself"></option>
+			<label>Author:</label> <select id="restlist" th:field="*{username}"
+				class="custom-select" style="width: 115px">
+				<option th:value="${#httpServletRequest.remoteUser}"
+					th:text="yourself"></option>
 				<option th:value="ANONYMOUS" th:text="anonymously"></option>
 			</select>
 		</div>
 		<div>
 			<label>Click a star to rate</label>
 			<fieldset class="rating">
-			    <input type="radio" id="star5" name="rating" value="5" th:field="*{rating}" /><label class = "full" for="star5"></label>
-			    <input type="radio" id="star4" name="rating" value="4" th:field="*{rating}" /><label class = "full" for="star4"></label>
-			    <input type="radio" id="star3" name="rating" value="3" th:field="*{rating}" /><label class = "full" for="star3"></label>
-			    <input type="radio" id="star2" name="rating" value="2" th:field="*{rating}" /><label class = "full" for="star2"></label>
-			    <input type="radio" id="star1" name="rating" value="1" th:field="*{rating}" /><label class = "full" for="star1"></label>
+				<input type="radio" id="star5" name="rating" value="5"
+					th:field="*{rating}" /><label class="full" for="star5"></label> <input
+					type="radio" id="star4" name="rating" value="4"
+					th:field="*{rating}" /><label class="full" for="star4"></label> <input
+					type="radio" id="star3" name="rating" value="3"
+					th:field="*{rating}" /><label class="full" for="star3"></label> <input
+					type="radio" id="star2" name="rating" value="2"
+					th:field="*{rating}" /><label class="full" for="star2"></label> <input
+					type="radio" id="star1" name="rating" value="1"
+					th:field="*{rating}" /><label class="full" for="star1"></label>
 			</fieldset>
 		</div>
 		<div>
 			<label>Click a price to rate</label>
 			<fieldset class="rating">
-				<input type="radio" id="price1" name="rating" value="1" th:field="*{price}" /><label class = "full" for="price1"></label>
-			    <input type="radio" id="price2" name="rating" value="2" th:field="*{price}" /><label class = "full" for="price2"></label>
-			    <input type="radio" id="price3" name="rating" value="3" th:field="*{price}" /><label class = "full" for="price3"></label>
-			    <input type="radio" id="price4" name="rating" value="4" th:field="*{price}" /><label class = "full" for="price4"></label>
+				<input type="radio" id="price1" name="rating" value="1"
+					th:field="*{price}" /><label class="full" for="price1"></label> <input
+					type="radio" id="price2" name="rating" value="2"
+					th:field="*{price}" /><label class="full" for="price2"></label> <input
+					type="radio" id="price3" name="rating" value="3"
+					th:field="*{price}" /><label class="full" for="price3"></label> <input
+					type="radio" id="price4" name="rating" value="4"
+					th:field="*{price}" /><label class="full" for="price4"></label>
 			</fieldset>
 		</div>
-		
+
 		<div>
-			<label>Restaurant:</label>
-			<select id="restlist" th:field="*{restaurant}" class="custom-select" style="width:115px">
-				<option th:each="restaurant: ${restaurants}" th:value="${restaurant.restaurantId}" th:text="${restaurant.restaurantName}"></option>
-			</select>
-			<a href="/addrestaurant" class="btn btn-success">Add a Restaurant</a>
+			<label>Restaurant:</label> <select id="restlist"
+				th:field="*{restaurant}" class="custom-select" style="width: 115px">
+				<option th:each="restaurant: ${restaurants}"
+					th:value="${restaurant.restaurantId}"
+					th:text="${restaurant.restaurantName}"></option>
+			</select> <a href="/addrestaurant" class="btn btn-success">Add a
+				Restaurant</a>
 		</div>
 		<div>
-			<label>Title:</label>
-			<input type="text" placeholder="Add a title..." name="title" th:field="*{title}" /> 
+			<label>Title:</label> <input type="text" placeholder="Add a title..."
+				name="title" th:field="*{title}" />
 		</div>
 		<div>
-			<label>Date of Creation:</label>
-			<input type="date" name="date" th:field="*{reviewDate}"/>
+			<label>Date of Creation:</label> <input type="date" name="date"
+				th:field="*{reviewDate}" />
 		</div>
 		<div class="form-group">
-    		<label for="reviewText">Review</label>
-    		<textarea class="form-control" placeholder="Write your review..." id="reviewText" rows="3" th:field="*{reviewText}" ></textarea>
-  		</div>
-  		<input type="submit" class="btn btn-success" value="Submit Review"></input>
+			<label for="reviewText">Review</label>
+			<textarea class="form-control" placeholder="Write your review..."
+				id="reviewText" rows="3" th:field="*{reviewText}"></textarea>
+		</div>
+
+		<div method="POST" action="/upload" enctype="multipart/form-data">
+			<input type="file" name="file" /><br /> <input type="submit"
+				value="Submit" />
+		</div>
+		<input type="submit" class="btn btn-success" value="Submit Review"></input>
 	</form>
 </body>
 </html>

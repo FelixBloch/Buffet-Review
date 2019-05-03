@@ -1,53 +1,70 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>Sign Up</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
-	
-	<script src='https://www.google.com/recaptcha/api.js'></script>
+<title>Sign Up</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 
 <body>
 	<h1>Sign up</h1>
 	<div class="col-md-4">
-		<form th:object="${signupform}" th:action="@{/saveuser}" class="form-horizontal" action="#" method="post">
+		<form th:object="${signupform}" th:action="@{/saveuser}"
+			class="form-horizontal" action="#" method="post">
 			<div>
-				<label> First Name :<input type="text" th:field="*{firstName}" class="form-control"/></label>
-				<p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First Name Error</p>	
+				<label> First Name :<input type="text"
+					th:field="*{firstName}" class="form-control" /></label>
+				<p th:if="${#fields.hasErrors('firstName')}"
+					th:errors="*{firstName}">First Name Error</p>
 			</div>
 			<div>
-				<label> Last Name :<input type="text" th:field="*{lastName}" class="form-control"/></label>
-				<p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last Name Error</p>	
+				<label> Last Name :<input type="text" th:field="*{lastName}"
+					class="form-control" /></label>
+				<p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last
+					Name Error</p>
 			</div>
 			<div>
-				<label> Username :<input type="text" th:field="*{username}" class="form-control"/></label>
-				<p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</p>	
+				<label> Username :<input type="text" th:field="*{username}"
+					class="form-control" /></label>
+				<p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username
+					Error</p>
 			</div>
 			<div>
-				<label> Email :<input type="text" th:field="*{email}" class="form-control"/></label>
-				<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</p>	
+				<label> Email :<input type="text" th:field="*{email}"
+					class="form-control" /></label>
+				<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email
+					Error</p>
 			</div>
 			<div>
-				<label> Password :<input type="password" th:field="*{password}" class="form-control"/></label>
-				<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</p>	
+				<label> Password :<input type="password"
+					th:field="*{password}" class="form-control" /></label>
+				<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password
+					Error</p>
 			</div>
 			<div>
-				<label> Re-type Password: <input type="password" th:field="*{passwordCheck}" class="form-control"/></label>
-				<p th:if="${#fields.hasErrors('passwordCheck')}" th:errors="*{passwordCheck}">Password Match Error</p>	
+				<label> Re-type Password: <input type="password"
+					th:field="*{passwordCheck}" class="form-control" /></label>
+				<p th:if="${#fields.hasErrors('passwordCheck')}"
+					th:errors="*{passwordCheck}">Password Match Error</p>
 			</div>
 			<div>
-				<label> Role </label> <br/>
-				<select id="rolelist" th:field="*{role}" class="custom-select" style="width:115px">
+				<label> Role </label> <br /> <select id="rolelist"
+					th:field="*{role}" class="custom-select" style="width: 115px">
 					<option th:value="student" th:text="Student"></option>
 					<option th:value="teacher" th:text="Teacher"></option>
 				</select>
-				<p th:if="${#fields.hasErrors('role')}" th:errors="*{role}">Role Error</p>	
+				<p th:if="${#fields.hasErrors('role')}" th:errors="*{role}">Role
+					Error</p>
 			</div>
-			
-			<div class="g-recaptcha" data-sitekey="6LeZQ6EUAAAAAHVZ2hgkX7_7GRKrU-8x2lZMqt6Z"></div>
-			
-			<input type="submit" class="btn btn-success" value="Signup"></input>		
+
+			<div class="g-recaptcha"
+				data-sitekey="6LeZQ6EUAAAAAHVZ2hgkX7_7GRKrU-8x2lZMqt6Z"></div>
+
+			<input type="submit" class="btn btn-success" value="Signup"></input>
 		</form>
 	</div>
 </body>

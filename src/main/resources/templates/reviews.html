@@ -1,35 +1,44 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-	<title>Buffet Review</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
-	
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<!-- Provided by W3Schools -->
-	<style>
-	.checked {
-	  color: orange;
-	}
-	</style>
+<title>Buffet Review</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- Provided by W3Schools -->
+<style>
+.checked {
+	color: orange;
+}
+</style>
 </head>
 
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-	  <a class="navbar-brand" th:href="@{/reviews}">Buffet Reviews</a>
-	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-	    <span class="navbar-toggler-icon"></span>
-	  </button>
-	  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-	    <div class="navbar-nav">
-	      <a class="nav-item nav-link active" th:href="@{/reviews}">Reviews<span class="sr-only">(current)</span></a>
-	      <a class="nav-item nav-link" th:href="@{/restaurants}">Restaurants</a>
-	    </div>
-	  </div>
-	  <span class="navbar-text" th:inline="text">Logged in as [[${#httpServletRequest.remoteUser}]]!</span>
-	  <form th:action="@{/logout}" method="post">
-		<input type="submit" class="btn btn-sm btn-outline-secondary" value="Sign Out"/>
-	  </form>
+		<a class="navbar-brand" th:href="@{/reviews}">Buffet Reviews</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			<div class="navbar-nav">
+				<a class="nav-item nav-link active" th:href="@{/reviews}">Reviews<span
+					class="sr-only">(current)</span></a> <a class="nav-item nav-link"
+					th:href="@{/restaurants}">Restaurants</a>
+			</div>
+		</div>
+		<span class="navbar-text" th:inline="text">Logged in as
+			[[${#httpServletRequest.remoteUser}]]!</span>
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" class="btn btn-sm btn-outline-secondary"
+				value="Sign Out" />
+		</form>
 	</nav>
 	<div>
 		<table class="table table-striped table-hover">
@@ -48,77 +57,53 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each = "review : ${reviews}">
+				<tr th:each="review : ${reviews}">
 					<td th:text="${review.title}"></td>
 					<td th:text="${review.restaurant.restaurantName}"></td>
-					
-					<td th:if="${review.rating} == 5">
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star checked"></span>
+
+					<td th:if="${review.rating} == 5"><span
+						class="fa fa-star checked"></span> <span
+						class="fa fa-star checked"></span> <span
+						class="fa fa-star checked"></span> <span
+						class="fa fa-star checked"></span> <span
+						class="fa fa-star checked"></span></td>
+					<td th:if="${review.rating} == 4"><span
+						class="fa fa-star checked"></span> <span
+						class="fa fa-star checked"></span> <span
+						class="fa fa-star checked"></span> <span
+						class="fa fa-star checked"></span> <span class="fa fa-star"></span>
 					</td>
-					<td th:if="${review.rating} == 4">
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star"></span>
+					<td th:if="${review.rating} == 3"><span
+						class="fa fa-star checked"></span> <span
+						class="fa fa-star checked"></span> <span
+						class="fa fa-star checked"></span> <span class="fa fa-star"></span>
+						<span class="fa fa-star"></span></td>
+					<td th:if="${review.rating} == 2"><span
+						class="fa fa-star checked"></span> <span
+						class="fa fa-star checked"></span> <span class="fa fa-star"></span>
+						<span class="fa fa-star"></span> <span class="fa fa-star"></span>
 					</td>
-					<td th:if="${review.rating} == 3">
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star"></span>
-						<span class="fa fa-star"></span>
-					</td>
-					<td th:if="${review.rating} == 2">
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star"></span>
-						<span class="fa fa-star"></span>
-						<span class="fa fa-star"></span>
-					</td>
-					<td th:if="${review.rating} == 1">
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star"></span>
-						<span class="fa fa-star"></span>
-						<span class="fa fa-star"></span>
-						<span class="fa fa-star"></span>
-					</td>
-					
-					<td th:if="${review.price} == 4">
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star checked"></span>
-					</td>
-					<td th:if="${review.price} == 3">
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star"></span>
-					</td>
-					<td th:if="${review.price} == 2">
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star"></span>
-						<span class="fa fa-star"></span>
-					</td>
-					<td th:if="${review.price} == 1">
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star"></span>
-						<span class="fa fa-star"></span>
-						<span class="fa fa-star"></span>
-					</td>
-					
+					<td th:if="${review.rating} == 1"><span
+						class="fa fa-star checked"></span> <span class="fa fa-star"></span>
+						<span class="fa fa-star"></span> <span class="fa fa-star"></span>
+						<span class="fa fa-star"></span></td>
+
+					<td th:if="${review.price} == 4">$$$$</td>
+					<td th:if="${review.price} == 3">$$$</td>
+					<td th:if="${review.price} == 2">$$</td>
+					<td th:if="${review.price} == 1">$</td>
+
 					<td th:text="${review.restaurant.city}"></td>
 					<td th:text="${review.reviewDate}"></td>
 					<td th:text="${review.username}"></td>
-					<td><a th:href="@{/showreview/{id}(id=${review.id})}" class="btn btn-info">Show review</a></td>
-					<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/editReview/{id}(id=${review.id})}" class="btn btn-warning">Edit</a></td>
-					<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/deleteReview/{id}(id=${review.id})}" class="btn btn-danger">Delete</a></td>
+					<td><a th:href="@{/showreview/{id}(id=${review.id})}"
+						class="btn btn-info">Show review</a></td>
+					<td sec:authorize="hasAuthority('ADMIN')"><a
+						th:href="@{/editReview/{id}(id=${review.id})}"
+						class="btn btn-warning">Edit</a></td>
+					<td sec:authorize="hasAuthority('ADMIN')"><a
+						th:href="@{/deleteReview/{id}(id=${review.id})}"
+						class="btn btn-danger">Delete</a></td>
 				</tr>
 			</tbody>
 		</table>

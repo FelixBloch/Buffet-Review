@@ -1,7 +1,12 @@
 package fi.haagahelia.buffetreview.web;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -10,10 +15,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import fi.haagahelia.buffetreview.domain.SignupForm;
 import fi.haagahelia.buffetreview.domain.User;
 import fi.haagahelia.buffetreview.domain.UserRepository;
+import fi.haagahelia.buffetreview.recaptcha.ReCaptchaService;
 
 @Controller
 public class UserController {
@@ -27,8 +34,8 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "saveuser", method = RequestMethod.POST)
-	public String save(@Valid @ModelAttribute("signupform") SignupForm signupForm,
-			BindingResult bindingResult/*, @RequestParam(name="g-recaptcha-response") String reCaptchaResponse, HttpServletRequest request*/) {
+	public String save(@Valid @ModelAttribute("signupform") SignupForm signupForm, BindingResult bindingResult,
+			@RequestParam(name = "g-recaptcha-response") String reCaptchaResponse, HttpServletRequest request) {
 		if (!bindingResult.hasErrors()) { // Validation errors
 			if (signupForm.getPassword().equals(signupForm.getPasswordCheck())) { // Check if passwords match
 				String pwd = signupForm.getPassword();
@@ -45,18 +52,18 @@ public class UserController {
 
 				if (repository.findByUsername(signupForm.getUsername()) == null) { // Check if user exists
 					if (repository.findByUsername(signupForm.getEmail()) == null) { // Check if email exists
-						/*
-						 * String ip = request.getRemoteAddr();
-						 * 
-						 * String captchaVerifyMessage = ReCaptchaService.verifyRecaptcha(ip,
-						 * reCaptchaResponse);
-						 * 
-						 * if (StringUtils.isEmpty(captchaVerifyMessage)) { Map<String, Object> response
-						 * = new HashMap<>(); response.put("message", captchaVerifyMessage);
-						 * 
-						 * bindingResult.rejectValue("captcha", "err.captcha", "reCAPTCHA failed.");
-						 * return "signup"; }
-						 */
+
+						String ip = request.getRemoteAddr();
+
+						/*String captchaVerifyMessage = ReCaptchaService.verifyRecaptcha(ip, reCaptchaResponse);
+
+						if (StringUtils.isEmpty(captchaVerifyMessage)) {
+							Map<String, Object> response = new HashMap<>();
+							response.put("message", captchaVerifyMessage);
+
+							bindingResult.rejectValue("captcha", "err.captcha", "reCAPTCHA failed.");
+							return "signup";
+						}*/
 
 						repository.save(newUser);
 
@@ -78,5 +85,5 @@ public class UserController {
 		}
 		return "redirect:/login";
 	}
-	
+
 }

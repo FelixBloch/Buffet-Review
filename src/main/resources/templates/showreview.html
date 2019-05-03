@@ -1,116 +1,139 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title></title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
-	<!-- Font Awesome by Dave Gandy - http://fontawesome.io -->
-	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
-	
-	<!-- here map api -->
-	<link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.0/mapsjs-ui.css?dp-version=1549984893" />
-	<script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-core.js"></script>
-	<script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-service.js"></script>
-	<script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-ui.js"></script>
-	<script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
-	
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+<!-- Font Awesome by Dave Gandy - http://fontawesome.io -->
+<link rel="stylesheet"
+	href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
+
+<!-- here map api -->
+<link rel="stylesheet" type="text/css"
+	href="https://js.api.here.com/v3/3.0/mapsjs-ui.css?dp-version=1549984893" />
+<script type="text/javascript"
+	src="https://js.api.here.com/v3/3.0/mapsjs-core.js"></script>
+<script type="text/javascript"
+	src="https://js.api.here.com/v3/3.0/mapsjs-service.js"></script>
+<script type="text/javascript"
+	src="https://js.api.here.com/v3/3.0/mapsjs-ui.js"></script>
+<script type="text/javascript"
+	src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
+
 </head>
 
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-	  <a class="navbar-brand" th:href="@{/reviews}">Buffet Reviews</a>
-	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-	    <span class="navbar-toggler-icon"></span>
-	  </button>
-	  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-	    <div class="navbar-nav">
-	      <a class="nav-item nav-link active" th:href="@{/reviews}">Reviews</a>
-	      <a class="nav-item nav-link" th:href="@{/restaurants}">Restaurants</a>
-	    </div>
-	  </div>
-	  <span class="navbar-text" th:inline="text">Logged in as [[${#httpServletRequest.remoteUser}]]!</span>
-	  <form th:action="@{/logout}" method="post">
-		<input type="submit" class="btn btn-sm btn-outline-secondary" value="Sign Out"/>
-	  </form>
+		<a class="navbar-brand" th:href="@{/reviews}">Buffet Reviews</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			<div class="navbar-nav">
+				<a class="nav-item nav-link active" th:href="@{/reviews}">Reviews</a>
+				<a class="nav-item nav-link" th:href="@{/restaurants}">Restaurants</a>
+			</div>
+		</div>
+		<span class="navbar-text" th:inline="text">Logged in as
+			[[${#httpServletRequest.remoteUser}]]!</span>
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" class="btn btn-sm btn-outline-secondary"
+				value="Sign Out" />
+		</form>
 	</nav>
-	
+
 	<h1 th:text="${review.title}"></h1>
-	
+
 	<p th:text="${review.reviewDate}"></p>
-	
+
 	<p th:text="${review.username}"></p>
-    
-    <p th:if="${review.rating} == 5">
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star checked"></span>
+
+	<p th:if="${review.rating} == 5">
+		<span class="fa fa-star checked"></span> <span
+			class="fa fa-star checked"></span> <span class="fa fa-star checked"></span>
+		<span class="fa fa-star checked"></span> <span
+			class="fa fa-star checked"></span>
 	</p>
 	<p th:if="${review.rating} == 4">
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star"></span>
+		<span class="fa fa-star checked"></span> <span
+			class="fa fa-star checked"></span> <span class="fa fa-star checked"></span>
+		<span class="fa fa-star checked"></span> <span class="fa fa-star"></span>
 	</p>
 	<p th:if="${review.rating} == 3">
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star"></span>
-		<span class="fa fa-star"></span>
+		<span class="fa fa-star checked"></span> <span
+			class="fa fa-star checked"></span> <span class="fa fa-star checked"></span>
+		<span class="fa fa-star"></span> <span class="fa fa-star"></span>
 	</p>
 	<p th:if="${review.rating} == 2">
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star"></span>
-		<span class="fa fa-star"></span>
-		<span class="fa fa-star"></span>
+		<span class="fa fa-star checked"></span> <span
+			class="fa fa-star checked"></span> <span class="fa fa-star"></span> <span
+			class="fa fa-star"></span> <span class="fa fa-star"></span>
 	</p>
 	<p th:if="${review.rating} == 1">
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star"></span>
-		<span class="fa fa-star"></span>
-		<span class="fa fa-star"></span>
-		<span class="fa fa-star"></span>
+		<span class="fa fa-star checked"></span> <span class="fa fa-star"></span>
+		<span class="fa fa-star"></span> <span class="fa fa-star"></span> <span
+			class="fa fa-star"></span>
 	</p>
-	
+
 	<p th:if="${review.price} == 4">
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star checked"></span>
+		<span class="fa fa-star checked"></span> <span
+			class="fa fa-star checked"></span> <span class="fa fa-star checked"></span>
 		<span class="fa fa-star checked"></span>
 	</p>
 	<p th:if="${review.price} == 3">
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star checked"></span>
+		<span class="fa fa-star checked"></span> <span
+			class="fa fa-star checked"></span> <span class="fa fa-star checked"></span>
 		<span class="fa fa-star"></span>
 	</p>
 	<p th:if="${review.price} == 2">
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star"></span>
-		<span class="fa fa-star"></span>
+		<span class="fa fa-star checked"></span> <span
+			class="fa fa-star checked"></span> <span class="fa fa-star"></span> <span
+			class="fa fa-star"></span>
 	</p>
 	<p th:if="${review.price} == 1">
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star"></span>
-		<span class="fa fa-star"></span>
-		<span class="fa fa-star"></span>
+		<span class="fa fa-star checked"></span> <span class="fa fa-star"></span>
+		<span class="fa fa-star"></span> <span class="fa fa-star"></span>
 	</p>
 	<p th:text="${review.restaurant.restaurantName}"></p>
-	
+
 	<p th:text="${review.reviewText}"></p>
+
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Type</th>
+		</tr>
+		<tr th:each="file: ${files}">
+			<td th:text="${file.fileName}"></td>
+			<td th:text="${file.mimeType}"></td>
+			<td><a th:href="@{/file/{id}(id=${file.id})}">Download</a></td>
+		</tr>
+	</table>
+	<a href="/upload">Upload</a>
 	
-	<div id="map" style="position:absolute; width:60%; height:50%; background:grey" ></div>
-	<div id="panel" style="position:absolute; width:49%; left:51%; height:100%; background:inherit" ></div>
-	
+	<div style="display: none;">
+		<p id="restaurantAddress" th:text="${review.restaurant.address}"></p>
+		<p id="restaurantPostcode" th:text="${review.restaurant.postcode}"></p>
+		<p id="restaurantCity" th:text="${review.restaurant.city}"></p>
+		<p id="restaurantCountry" th:text="${review.restaurant.country}"></p>
+	</div>
+
+	<div id="map"
+		style="position: absolute; width: 60%; height: 50%; background: grey"></div>
+	<div id="panel"
+		style="position: absolute; width: 49%; left: 51%; height: 100%; background: inherit"></div>
+
 	<script type="text/javascript" charset="UTF-8">
 		function geocode(platform) {
+			
+			var fullAddress = document.getElementById("restaurantAddress").innerHTML + ' ' + document.getElementById("restaurantPostcode").innerHTML + ' ' + document.getElementById("restaurantCity").innerHTML + ' ' + document.getElementById("restaurantCountry").innerHTML;
+			
 			var geocoder = platform.getGeocodingService(), geocodingParameters = {
-				searchText : '${review.restaurant.address} ${review.restaurant.postcode} ${review.restaurant.city} ${review.restaurant.country}',
+				searchText : fullAddress,
 				jsonattributes : 1
 			};
 
@@ -187,24 +210,15 @@
 					lng : locations[i].location.displayPosition.longitude
 				};
 
-				content += '<strong>houseNumber:</strong> '
-						+ address.houseNumber + '<br/>';
-				content += '<strong>street:</strong> ' + address.street
+				content += '<strong>House Number:</strong> '
+						+  '<br/>';
+				content += '<strong>Address:</strong> ' + address.street 
+							+ ' ' + address.houseNumber + '<br/>';
+				content += '<strong>District:</strong> ' + address.district
 						+ '<br/>';
-				content += '<strong>district:</strong> ' + address.district
+				content += '<strong>Post-Code:</strong> ' + address.postalCode
 						+ '<br/>';
-				content += '<strong>city:</strong> ' + address.city + '<br/>';
-				content += '<strong>postalCode:</strong> ' + address.postalCode
-						+ '<br/>';
-				content += '<strong>county:</strong> ' + address.county
-						+ '<br/>';
-				content += '<strong>country:</strong> ' + address.country
-						+ '<br/>';
-				content += '<br/><strong>position:</strong> '
-						+ Math.abs(position.lat.toFixed(4))
-						+ ((position.lat > 0) ? 'N' : 'S') + ' '
-						+ Math.abs(position.lng.toFixed(4))
-						+ ((position.lng > 0) ? 'E' : 'W');
+				content += '<strong>City:</strong> ' + address.city + '<br/>';
 
 				divLabel.innerHTML = content;
 				li.appendChild(divLabel);
