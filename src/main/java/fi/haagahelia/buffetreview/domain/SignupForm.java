@@ -31,6 +31,8 @@ public class SignupForm {
 	@NotEmpty
 	@Size(min = 2, max = 50)
 	private String lastName = "";
+	
+	private String captcha;
 
 	public String getUsername() {
 		return username;
@@ -86,6 +88,14 @@ public class SignupForm {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+	
+	public String getCaptcha() {
+		return captcha;
+	}
+
+	public void setCaptcha(String captcha) {
+		this.captcha = captcha;
 	}
 
 }

@@ -20,7 +20,7 @@
 			<div class="navbar-nav">
 				<a class="nav-item nav-link active" th:href="@{/reviews}">Reviews</a>
 				<a class="nav-item nav-link" th:href="@{/restaurants}">Restaurants</a>
-				<a class="nav-item nav-link" th:href="@{/pictures}">User Pictures</a>
+				<a class="nav-item nav-link active" th:href="@{/pictures}">User Pictures<span class="sr-only">(current)</span></a>
 			</div>
 		</div>
 		<span class="navbar-text" th:inline="text">Logged in as
@@ -31,6 +31,18 @@
 		</form>
 	</nav>
 	
-	<h3 th:text="${msg}"></h3>
+	<h3>Upload a picture</h3>
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Type</th>
+		</tr>
+		<tr th:each="file: ${files}">
+			<td th:text="${file.fileName}"></td>
+			<td th:text="${file.mimeType}"></td>
+			<td><a th:href="@{/file/{id}(id=${file.id})}">Download</a></td>
+		</tr>
+	</table>
+	<a class="btn btn-sm btn-primary" href="/upload">Upload a picture</a>
 </body>
 </html>

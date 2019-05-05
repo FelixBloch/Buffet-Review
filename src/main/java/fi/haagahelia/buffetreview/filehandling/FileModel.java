@@ -1,4 +1,4 @@
-package fi.haagahelia.buffetreview.domain;
+package fi.haagahelia.buffetreview.filehandling;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

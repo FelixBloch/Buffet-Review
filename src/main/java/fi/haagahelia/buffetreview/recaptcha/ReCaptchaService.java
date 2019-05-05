@@ -19,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 public class ReCaptchaService {
 
 	@Value("6LeZQ6EUAAAAAAQ6dvmrCmse2jHCOlC9_m_dpdu3")
-	String reCaptchaSecret;
+	private String reCaptchaSecret;
 	
 	private static final String GOOGLE_RECAPTCHA_VERIFY_URL = "https://www.google.com/recaptcha/api/siteverify";
 

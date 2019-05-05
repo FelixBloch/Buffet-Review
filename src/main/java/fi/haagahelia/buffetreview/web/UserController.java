@@ -26,6 +26,9 @@ import fi.haagahelia.buffetreview.recaptcha.ReCaptchaService;
 public class UserController {
 	@Autowired
 	private UserRepository repository;
+	
+	@Autowired
+	ReCaptchaService captchaService;
 
 	@RequestMapping(value = "signup")
 	public String addUser(Model model) {
@@ -55,7 +58,7 @@ public class UserController {
 
 						String ip = request.getRemoteAddr();
 
-						String captchaVerifyMessage = ReCaptchaService.verifyRecaptcha(ip, reCaptchaResponse);
+						String captchaVerifyMessage = captchaService.verifyRecaptcha(ip, reCaptchaResponse);
 
 						if (StringUtils.isEmpty(captchaVerifyMessage)) {
 							Map<String, Object> response = new HashMap<>();

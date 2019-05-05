@@ -36,6 +36,7 @@
 			<div class="navbar-nav">
 				<a class="nav-item nav-link active" th:href="@{/reviews}">Reviews</a>
 				<a class="nav-item nav-link" th:href="@{/restaurants}">Restaurants</a>
+				<a class="nav-item nav-link" th:href="@{/pictures}">User Pictures</a>
 			</div>
 		</div>
 		<span class="navbar-text" th:inline="text">Logged in as
@@ -101,19 +102,6 @@
 	<p th:text="${review.restaurant.restaurantName}"></p>
 
 	<p th:text="${review.reviewText}"></p>
-
-	<table>
-		<tr>
-			<th>Name</th>
-			<th>Type</th>
-		</tr>
-		<tr th:each="file: ${files}">
-			<td th:text="${file.fileName}"></td>
-			<td th:text="${file.mimeType}"></td>
-			<td><a th:href="@{/file/{id}(id=${file.id})}">Download</a></td>
-		</tr>
-	</table>
-	<a href="/upload">Upload</a>
 	
 	<div style="display: none;">
 		<p id="restaurantAddress" th:text="${review.restaurant.address}"></p>

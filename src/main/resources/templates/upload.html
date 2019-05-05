@@ -9,9 +9,32 @@
 </head>
 
 <body>
-	<h1>upload a picture</h1>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" th:href="@{/reviews}">Buffet Reviews</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			<div class="navbar-nav">
+				<a class="nav-item nav-link active" th:href="@{/reviews}">Reviews</a>
+				<a class="nav-item nav-link" th:href="@{/restaurants}">Restaurants</a>
+				<a class="nav-item nav-link" th:href="@{/pictures}">User Pictures</a>
+			</div>
+		</div>
+		<span class="navbar-text" th:inline="text">Logged in as
+			[[${#httpServletRequest.remoteUser}]]!</span>
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" class="btn btn-sm btn-outline-secondary"
+				value="Sign Out" />
+		</form>
+	</nav>
+	
+	<h3>Upload a picture</h3>
 	<form method="POST" action="/upload" enctype="multipart/form-data">
-		<input type="file" name="file" /><br /> <input type="submit"
-			value="Submit" />
+		<input type="file" name="file" /><br />
+		<input type="submit" value="Submit" />
 	</form>
 </body>
+</html>

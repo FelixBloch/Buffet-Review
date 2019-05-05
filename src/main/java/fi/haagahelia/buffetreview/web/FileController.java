@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import fi.haagahelia.buffetreview.domain.FileModel;
-import fi.haagahelia.buffetreview.domain.FileModelRepository;
+import fi.haagahelia.buffetreview.filehandling.FileModel;
+import fi.haagahelia.buffetreview.filehandling.FileModelRepository;
 
 @Controller
 public class FileController {
@@ -24,8 +24,13 @@ public class FileController {
 	@Autowired
 	private FileModelRepository frepository;
 
-	@Value("${upload.path}")
-	private String uploadFolder;
+	//@Value("${upload.path}")
+	//private String uploadFolder;
+	
+	@GetMapping("/upload")
+	public String upload() {
+		return "upload";
+	}
 
 	@PostMapping("/upload")
 	public String fileUpload(@RequestParam("file") MultipartFile file, Model model) {
@@ -40,6 +45,7 @@ public class FileController {
 			frepository.save(fileModel);
 
 			model.addAttribute("msg", "File " + file.getOriginalFilename() + " uploaded");
+			return "redirect:/files";
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -47,10 +53,16 @@ public class FileController {
 		return "uploadstatus";
 	}
 
-	@PostMapping("/showreview")
+	@PostMapping("/pictures")
 	public String fileList(Model model) {
 		model.addAttribute("files", frepository.findAll());
-		return "filelist";
+		return "userpictures";
+	}
+	
+	@GetMapping("/pictures")
+	public String fileListGet(Model model) {
+		model.addAttribute("files", frepository.findAll());
+		return "userpictures";
 	}
 
 	@GetMapping("/file/{id}")

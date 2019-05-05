@@ -32,6 +32,13 @@ public class ReviewController {
 		model.addAttribute("reviews", repository.findAll());
 		return "reviews";
 	}
+	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String reviewsAlt(Model model) {
+		model.addAttribute("review", new Review());
+		model.addAttribute("reviews", repository.findAll());
+		return "reviews";
+	}
 
 	@RequestMapping(value = "/restaurants", method = RequestMethod.GET)
 	public String restaurants(Model model) {
