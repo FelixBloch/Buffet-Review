@@ -35,7 +35,7 @@ public class UserController {
 		model.addAttribute("signupform", new SignupForm());
 		return "signup";
 	}
-
+	
 	@RequestMapping(value = "saveuser", method = RequestMethod.POST)
 	public String save(@Valid @ModelAttribute("signupform") SignupForm signupForm, BindingResult bindingResult,
 			@RequestParam(name = "g-recaptcha-response") String reCaptchaResponse, HttpServletRequest request) {
@@ -60,7 +60,7 @@ public class UserController {
 
 						String captchaVerifyMessage = captchaService.verifyRecaptcha(ip, reCaptchaResponse);
 
-						if (StringUtils.isEmpty(captchaVerifyMessage)) {
+						if (StringUtils.isNotEmpty(captchaVerifyMessage)) {
 							Map<String, Object> response = new HashMap<>();
 							response.put("message", captchaVerifyMessage);
 

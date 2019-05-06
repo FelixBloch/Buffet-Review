@@ -31,21 +31,20 @@ public class FileController {
 	public String upload() {
 		return "upload";
 	}
-
+	
 	@PostMapping("/upload")
 	public String fileUpload(@RequestParam("file") MultipartFile file, Model model) {
 		if (file.isEmpty()) {
 			model.addAttribute("msg", "Upload failed");
 			return "uploadstatus";
 		}
-
+		
 		try {
 			FileModel fileModel = new FileModel(file.getOriginalFilename(), file.getContentType(), file.getBytes());
 
 			frepository.save(fileModel);
 
-			model.addAttribute("msg", "File " + file.getOriginalFilename() + " uploaded");
-			return "redirect:/files";
+			return "redirect:pictures";
 
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -32,7 +32,7 @@
 	</nav>
 	
 	<h3>Upload a picture</h3>
-	<form method="POST" action="/upload" enctype="multipart/form-data">
+	<form method="POST" th:action="@{/upload}" enctype="multipart/form-data">
 		<input type="file" name="file" /><br />
 		<input type="submit" value="Submit" />
 	</form>
