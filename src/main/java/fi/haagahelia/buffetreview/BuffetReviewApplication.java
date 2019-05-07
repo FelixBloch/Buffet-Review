@@ -12,13 +12,21 @@ import fi.haagahelia.buffetreview.domain.ReviewRepository;
 import fi.haagahelia.buffetreview.domain.User;
 import fi.haagahelia.buffetreview.domain.UserRepository;
 
+/**
+ * 
+ * @author Felix Bloch felix.z.bloch@gmail.com
+ *
+ */
 @SpringBootApplication
 public class BuffetReviewApplication {
-
+	
 	public static void main(String[] args) {
 		SpringApplication.run(BuffetReviewApplication.class, args);
 	}
-	/*
+	
+	/**
+	 * Creates the default users and saves them into the database.
+	 */
 	@Bean
 	public CommandLineRunner demo(ReviewRepository repository, RestaurantRepository rrepository,
 			UserRepository urepository) {
@@ -53,6 +61,6 @@ public class BuffetReviewApplication {
 					1, "2019-04-07"));
 
 		};
-	}*/
+	}
 
 }

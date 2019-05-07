@@ -11,22 +11,16 @@ import org.springframework.data.annotation.CreatedBy;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/**
+ * Entity class for the Reviews.
+ */
 @Entity
 public class Review {
+	
+	// Generates the ID for reviews.
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-
-	@ManyToOne
-	@JsonIgnore
-	@JoinColumn(name = "restaurantId")
-	private Restaurant restaurant;
-
-	@ManyToOne
-	@JsonIgnore
-	@JoinColumn(name = "userId")
-	@CreatedBy
-	private User user;
 
 	// Review data
 	private String title;
@@ -36,6 +30,19 @@ public class Review {
 	private String reviewDate;
 	private String username;
 
+	// Many to one relationship to Restaurant Entity.
+	@ManyToOne
+	@JsonIgnore
+	@JoinColumn(name = "restaurantId")
+	private Restaurant restaurant;
+	
+	// Many to one relationship to User Entity.
+	@ManyToOne
+	@JsonIgnore
+	@JoinColumn(name = "userId")
+	@CreatedBy
+	private User user;
+	
 	public Review(String title, Restaurant restaurant, String username, int rating, String reviewText, int price,
 			String reviewDate) {
 		this.title = title;

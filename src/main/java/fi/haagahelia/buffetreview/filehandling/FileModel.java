@@ -6,14 +6,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 
+/**
+ * Entity class for the Files.
+ */
 @Entity
 public class FileModel {
-
+	
+	// Generates individual IDs for the FileModel Entity.
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long fileId;
 	private String fileName, mimeType;
-
+	
+	// Saves file content to large object.
 	@Lob
 	private byte[] file;
 

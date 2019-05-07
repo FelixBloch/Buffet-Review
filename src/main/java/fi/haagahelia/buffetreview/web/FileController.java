@@ -18,27 +18,38 @@ import org.springframework.web.multipart.MultipartFile;
 import fi.haagahelia.buffetreview.filehandling.FileModel;
 import fi.haagahelia.buffetreview.filehandling.FileModelRepository;
 
+/**
+ * Controller for file handling.
+ */
 @Controller
 public class FileController {
 
 	@Autowired
 	private FileModelRepository frepository;
-
-	//@Value("${upload.path}")
-	//private String uploadFolder;
 	
+	/**
+	 * Get mapping for the upload page.
+	 */
 	@GetMapping("/upload")
 	public String upload() {
 		return "upload";
 	}
 	
+	/**
+	 * Post mapping for the upload page.
+	 * 
+	 * Allows the user to upload a file from his system.
+	 * Saves the file to the DB.
+	 * Checks for errors.
+	 */
 	@PostMapping("/upload")
 	public String fileUpload(@RequestParam("file") MultipartFile file, Model model) {
+		
 		if (file.isEmpty()) {
 			model.addAttribute("msg", "Upload failed");
 			return "uploadstatus";
 		}
-		
+
 		try {
 			FileModel fileModel = new FileModel(file.getOriginalFilename(), file.getContentType(), file.getBytes());
 
@@ -51,22 +62,33 @@ public class FileController {
 		}
 		return "uploadstatus";
 	}
-
+	
+	/**
+	 * Post mapping for pictures.
+	 */
 	@PostMapping("/pictures")
 	public String fileList(Model model) {
 		model.addAttribute("files", frepository.findAll());
 		return "userpictures";
 	}
 	
+	/**
+	 * Get mapping for pictures.
+	 */
 	@GetMapping("/pictures")
 	public String fileListGet(Model model) {
 		model.addAttribute("files", frepository.findAll());
 		return "userpictures";
 	}
-
+	
+	/**
+	 * Get mapping for the individual files.
+	 */
 	@GetMapping("/file/{id}")
 	public ResponseEntity<byte[]> getFile(@PathVariable Long id) {
+		
 		Optional<FileModel> fileOptional = frepository.findById(id);
+		
 		if (fileOptional.isPresent()) {
 			FileModel file = fileOptional.get();
 			return ResponseEntity.ok()

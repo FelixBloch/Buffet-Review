@@ -10,10 +10,14 @@ import org.springframework.stereotype.Service;
 import fi.haagahelia.buffetreview.domain.User;
 import fi.haagahelia.buffetreview.domain.UserRepository;
 
+/**
+ * This interface authenticates and authorises the user.
+ */
 @Service
 public class UserDetailServiceImpl implements UserDetailsService {
+	
 	private final UserRepository repository;
-
+	
 	@Autowired
 	public UserDetailServiceImpl(UserRepository userRepository) {
 		this.repository = userRepository;

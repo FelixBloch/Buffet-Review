@@ -12,8 +12,13 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/**
+ * Entity class for the Restaurants.
+ */
 @Entity
 public class Restaurant {
+	
+	// Generates individual IDs for restaurants.
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long restaurantId;
@@ -36,11 +41,12 @@ public class Restaurant {
 	private String state;
 	@Column(name = "country", nullable = false)
 	private String country;
-
+	
+	// One to many relationship to Review Entity.
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurant")
 	@JsonIgnore
 	private List<Review> reviews;
-
+	
 	public Restaurant(String restaurantName, String type, String info, String address, String city, String postcode,
 			String state, String country) {
 		this.restaurantName = restaurantName;

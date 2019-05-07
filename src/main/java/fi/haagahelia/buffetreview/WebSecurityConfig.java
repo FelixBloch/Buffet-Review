@@ -11,10 +11,20 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import fi.haagahelia.buffetreview.domain.UserDetailServiceImpl;
 
+/**
+ * 
+ * @author Test Felix Bloch felix.z.bloch@gmail.com
+ *
+ */
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+	
+	/**
+	 * Defines which paths are secured and the path to the login page.
+	 * The signup page does not require authentication.
+	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers("/signup", "/saveuser").permitAll().and().authorizeRequests().anyRequest()
@@ -24,7 +34,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private UserDetailServiceImpl userDetailsService;
-
+	
+	/**
+	 * Enables BCrypt as the encoder for passwords.
+	 */
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());

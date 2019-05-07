@@ -10,8 +10,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+/**
+ * Entity class for the Users.
+ */
 @Entity
 public class User {
+	
+	// Generates individual IDs for users.
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "userId", nullable = false, updatable = false)
@@ -30,10 +35,11 @@ public class User {
 	private String firstName;
 	@Column(name = "lastName", nullable = false)
 	private String lastName;
-
+	
+	// One to many relationship to Review entity.
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 	private List<Review> reviews;
-
+	
 	public User(String username, String email, String password, String role, String firstName, String lastName) {
 		this.username = username;
 		this.email = email;

@@ -3,7 +3,11 @@ package fi.haagahelia.buffetreview.recaptcha;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Mapping the response code with the response message from Google.
+ */
 public class ReCaptchaUtil {
+	
 	public static final Map<String, String> RECAPTCHA_ERROR_CODE = new HashMap<>();
 
 	static {
