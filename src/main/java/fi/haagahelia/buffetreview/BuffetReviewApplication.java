@@ -27,7 +27,7 @@ public class BuffetReviewApplication {
 	/**
 	 * Creates the default users and saves them into the database.
 	 */
-	@Bean
+	/*@Bean
 	public CommandLineRunner demo(ReviewRepository repository, RestaurantRepository rrepository,
 			UserRepository urepository) {
 		return (args) -> {
@@ -61,6 +61,6 @@ public class BuffetReviewApplication {
 					1, "2019-04-07"));
 
 		};
-	}
+	}*/
 
 }
